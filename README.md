@@ -38,3 +38,5 @@ docker run -p 8888:8888 docker-spring-boot-api
 
 ## About
 I started this project for fun which showcase a bit of Springboot, Java 11, Docker, lombok and lambda.
+
+CI trigger test – automatic build after Poll SCM

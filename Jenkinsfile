@@ -1,20 +1,21 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.9-eclipse-temurin-11'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+    agent any
+
+    tools {
+        maven 'Maven3'
     }
 
     stages {
         stage('Checkout') {
-            steps { checkout scm }
+            steps {
+                checkout scm
+            }
         }
 
         stage('Build') {
             steps {
                 dir('com.divit.spring-boot-simple-rest-api') {
-                    sh 'mvn -B clean package -DskipTests'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
@@ -22,10 +23,9 @@ pipeline {
         stage('Test') {
             steps {
                 dir('com.divit.spring-boot-simple-rest-api') {
-                    sh 'mvn -B test'
+                    sh 'mvn test'
                 }
             }
         }
     }
 }
-
